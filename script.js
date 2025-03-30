@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
     packageContainer.innerHTML = content;
 });
 
+//Register Form
 document.addEventListener("DOMContentLoaded", function () {
     let registerForm = document.getElementById("registerForm");
 
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let dob = document.getElementById("dob")?.value;
         let email = document.getElementById("email")?.value.trim();
         let password = document.getElementById("password")?.value.trim();
-        let gender = document.querySelector('input[name="gender"]:checked');
+        let gender = document.querySelector('input[name="gender"]:checked')?.value;
 
         if (!fullname || fullname.length < 3) {
             alert("Full Name must be at least 3 characters.");
@@ -130,12 +131,62 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // **Store user details in localStorage**
+        let user = { fullname, contact, dob, email, password, gender };
+        localStorage.setItem("user", JSON.stringify(user));
+
         alert("Registration Successful!");
+
         registerForm.reset();
 
         // Close the modal after successful registration
-        let modal = new bootstrap.Modal(document.getElementById("registerModal"));
+        let modalElement = document.getElementById("registerModal");
+        let modal = bootstrap.Modal.getInstance(modalElement);
         modal.hide();
+
+        // Redirect to login page
+        let loginModal = new bootstrap.Modal(document.getElementById("loginModal"));
+        loginModal.show();
     });
 });
+
+//Login form
+document.addEventListener("DOMContentLoaded", function () {
+    let loginForm = document.getElementById("loginForm");
+
+    // Handle login form submission
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let email = document.getElementById("loginEmail").value.trim();
+        let password = document.getElementById("loginPassword").value.trim();
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            alert("Enter a valid Email ID.");
+            return;
+        }
+
+        if (!password || password.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return;
+        }
+
+        alert("Login Successful!");
+        loginForm.reset();
+
+        // Close the login modal after successful login
+        let loginModal = new bootstrap.Modal(document.getElementById("loginModal"));
+        loginModal.hide();
+    });
+
+    // Open Register Modal when clicking "Register here"
+    document.getElementById("openRegisterModal").addEventListener("click", function () {
+        let loginModal = bootstrap.Modal.getInstance(document.getElementById("loginModal"));
+        loginModal.hide(); // Close login modal first
+
+        let registerModal = new bootstrap.Modal(document.getElementById("registerModal"));
+        registerModal.show(); // Open register modal
+    });
+});
+
 
