@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0px; height: 80px;">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="images/brand.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#booking">Book</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Packages</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">United States</a></li>
+                            <li><a class="dropdown-item" href="#">India</a></li>
+                            <li><a class="dropdown-item" href="#">France</a></li>
+                            <li><a class="dropdown-item" href="#">Germany</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button></li>
+                    <li class="nav-item"><button type="button" class="btn btn-success btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center text-white">
+        <h1>Welcome to ghumOfi</h1>
+        <h2 id="changing-text">Visit Paris</h2>
+        <button class="btn btn-primary">Book Now</button>
+    </header>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking-section container">
+      <div class="image-container">
+          <img src="images/comapny.jpg" alt="Company Image">
+      </div>
+      <div class="form-container">
+          <h2>Book Your Trip</h2>
+          <form id="bookingForm">
+              <label>Where to:</label>
+              <select id="whereTo" class="form-control">
+                  <option value="">Select Destination</option>
+                  <option value="Paris">Paris</option>
+                  <option value="New York">New York</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="London">London</option>
+                  <option value="Tokyo">Tokyo</option>
+              </select>
+
+              <label>How Many Persons:</label>
+              <input type="number" id="persons" class="form-control" min="1">
+
+              <label>Start Date:</label>
+              <input type="date" id="startDate" class="form-control">
+
+              <label>End Date:</label>
+              <input type="date" id="endDate" class="form-control">
+
+              <label>Description:</label>
+              <textarea id="description" class="form-control" minlength="50" maxlength="500"></textarea>
+
+              <button type="button" class="btn btn-success mt-3" onclick="validateBooking()">Book Now</button>
+          </form>
+      </div>
+  </section>
+
+    <!-- Package Gallery Section -->
+    <section id="packages" class="container my-5">
+        <h2 class="text-center">Our Packages</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/paris.jpg" class="card-img-top" alt="Paris">
+                    <div class="card-body">
+                        <h5 class="card-title">Paris</h5>
+                        <p class="card-text">Experience the beauty of the Eiffel Tower, Louvre Museum, and more.</p>
+                        <p><strong>Price:</strong> $999</p>
+                        <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+                        <button class="btn btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                  <img src="images/usa.jpg" class="card-img-top" alt="USA">
+                  <div class="card-body">
+                      <h5 class="card-title">USA</h5>
+                      <p class="card-text">Explore the Statue of Liberty, Times Square, and Central Park.</p>
+                      <p><strong>Price:</strong> $1299</p>
+                      <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+                      <button class="btn btn-primary">Book Now</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+                <img src="images/germany.jpg" class="card-img-top" alt="Germany">
+                <div class="card-body">
+                    <h5 class="card-title">Germany</h5>
+                    <p class="card-text">Discover the Brandenburg Gate, Berlin Wall, and Museum Island.</p>
+                    <p><strong>Price:</strong> $1199</p>
+                    <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+                    <button class="btn btn-primary">Book Now</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container my-5">
+        <h2 class="text-center">Our Services</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5>Affordable Hotels</h5>
+                    <p>Stay in budget-friendly, high-quality accommodations.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5>Food & Drinks</h5>
+                    <p>Enjoy delicious local and international cuisines.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5>Safety Guide</h5>
+                    <p>Experienced guides ensure your safety and comfort.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+      <h2>Our Gallery</h2>
+      <div class="container">
+          <div class="gallery-container">
+              <img src="images/gallery1.jpg" alt="Gallery Image 1">
+              <img src="images/gallery2.jpg" alt="Gallery Image 2">
+              <img src="images/gallery3.jpg" alt="Gallery Image 3">
+          </div>
+      </div>
+  </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="images/comapny.jpg" class="img-fluid" alt="Company Image">
+            </div>
+            <div class="col-md-6">
+                <h2>About Us</h2>
+                <p>ghumOfi has been a leader in the travel industry since 2000, offering top-notch services and unforgettable experiences worldwide.</p>
+                <p>Our mission is to provide hassle-free, memorable travel experiences with the highest level of customer satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white text-center p-3">
+        <p>&copy; 2025 ghumOfi. All Rights Reserved.</p>
+        <p>
+            <a href="#" class="text-white mx-2">Instagram</a> | 
+            <a href="#" class="text-white mx-2">Facebook</a> | 
+            <a href="#" class="text-white mx-2">Twitter</a>
+        </p>
+    </footer>
+
+    
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="registerModalLabel">Register</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form id="registerForm">
+                <div class="mb-3">
+                <label for="fullname" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullname" required>
+                </div>
+                <div class="mb-3">
+                <label for="contact" class="form-label">Contact</label>
+                <input type="text" class="form-control" id="contact" required>
+                </div>
+                <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" required>
+                </div>
+                <div class="mb-3">
+                <label for="email" class="form-label">Email ID</label>
+                <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+                </div>
+                <div class="mb-3">
+                <label class="form-label">Gender</label><br>
+                <input type="radio" name="gender" value="Male" required> Male
+                <input type="radio" name="gender" value="Female" required> Female
+                </div>
+                <button type="submit" class="btn btn-success">Register</button>
+            </form>
+            <div class="mt-3">
+                <a href="login.html">Already have an account? Login here</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email ID</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <div class="mt-3">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Don't have an account? Register here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
